@@ -71,6 +71,28 @@ func BuildCoordList(s string) []Coordinate {
 //FindIntersections finds the intersections in left and right, not deduped
 func FindIntersections(left []Coordinate, right []Coordinate) []Intersection {
 	intersections := make([]Intersection, 0, 100)
+	rightMap := make(map[string]int)
+	for i, c := range right {
+		rightMap[c.String()] = i
+	}
+	for li, l := range left {
+		if rightsteps, ok := rightMap[l.String()]; ok {
+			intersections = append(intersections, Intersection{
+				CombinedSteps: li + rightsteps,
+				Coordinate:    l,
+			})
+		}
+	}
+	return intersections
+}
+
+//FindIntersectionsQuadratic finds the intersections in left and right, not deduped
+func FindIntersectionsQuadratic(left []Coordinate, right []Coordinate) []Intersection {
+	intersections := make([]Intersection, 0, 100)
+	rightMap := make(map[string]int)
+	for i, c := range right {
+		rightMap[c.String()] = i
+	}
 	for li, l := range left {
 		for ri, r := range right {
 			if l.Equals(r) {

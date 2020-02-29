@@ -1,5 +1,7 @@
 package day3
 
+import "strconv"
+
 //Coordinate represents an x y coordinate
 type Coordinate struct {
 	X int
@@ -29,6 +31,11 @@ func (c Coordinate) Equals(in Coordinate) bool {
 		return true
 	}
 	return false
+}
+
+//String returns a string representation
+func (c Coordinate) String() string {
+	return strconv.Itoa(c.X) + "," + strconv.Itoa(c.Y)
 }
 
 //Intersection a coordinate and the combined steps to get to that coordinate
