@@ -1,6 +1,9 @@
 package day3
 
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 //Coordinate represents an x y coordinate
 type Coordinate struct {
@@ -38,8 +41,25 @@ func (c Coordinate) String() string {
 	return strconv.Itoa(c.X) + "," + strconv.Itoa(c.Y)
 }
 
+//MakeCoordinate takes in the strig rep of a coord, and returns a coord
+func MakeCoordinate(s string) Coordinate {
+	vals := strings.Split(s, ",")
+	x, _ := strconv.Atoi(vals[0])
+	y, _ := strconv.Atoi(vals[1])
+	return Coordinate{
+		X: x,
+		Y: y,
+	}
+}
+
 //Intersection a coordinate and the combined steps to get to that coordinate
 type Intersection struct {
 	CombinedSteps int
 	Coordinate
+}
+
+//Intersection a coordinate and the combined steps to get to that coordinate
+type IntersectionAttributes struct {
+	CombinedSteps     int
+	ManhattenDistance int
 }
