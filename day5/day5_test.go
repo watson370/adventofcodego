@@ -30,6 +30,4 @@ func TestGetVal(t *testing.T) {
 	if res != 3 {
 		t.Error("did not get 3")
 	}
-	t.Fail()
-
 }
